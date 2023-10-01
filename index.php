@@ -25,6 +25,7 @@ $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]]; // Exemplo de um estado inicial
   <title>Puzzle8</title>
 </head>
 <body>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <div class="container px-4 py-5">
         <div class="text-center" style="display: flex;flex-direction: column;align-items: center;">
             <h2>Puzzle8</h2>
@@ -44,7 +45,7 @@ $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]]; // Exemplo de um estado inicial
                     <option value="ba2">Busca A* (com f(x) = g(x) + h(x))</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Gerar árvore</button>
+            <button type="submit" class="btn btn-primary">Resolver</button>
         </form>
         <?php
             if (isset($_POST['tipo-busca'])) {

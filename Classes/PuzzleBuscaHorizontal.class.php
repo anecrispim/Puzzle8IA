@@ -1,7 +1,7 @@
 <?php
 
 class PuzzleBuscaHorizontal {
-    private $oPuzzle;
+    public $oPuzzle;
     public $oPai;
     public $sAcao;
 

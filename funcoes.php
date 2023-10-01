@@ -27,10 +27,10 @@ function criarMatriz() {
 
 // Função para imprimir a matriz
 function imprimirMatrizTable($aMatriz) {
-    foreach ($aMatriz as $iLinha) {
-        echo '<tr style="line-height: 100px;">';
-        foreach ($iLinha as $iValor) {
-            echo '<td style="font-size: 21px;font-weight: 400;">' . $iValor . '</td>';
+    foreach ($aMatriz as $iLinha => $aLinha) {
+        echo sprintf('<tr style="line-height: 100px;" id="linha-%s">', $iLinha);
+        foreach ($aLinha as $iColuna => $iValor) {
+            echo sprintf('<td style="font-size: 21px;font-weight: 400;" class="coluna-%s">%s</td>', $iColuna, $iValor);
         }
         echo '</tr>';
     }
