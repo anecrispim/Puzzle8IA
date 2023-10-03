@@ -13,7 +13,7 @@ function estadoEsperado($oEstado) {
 
     $oFila->enqueue($oEstadoInicial);
 
-    $iLimite = 899999;
+    $iLimite = 110000;
     $iCont = 0;
     while (!$oFila->isEmpty()) {
         $oEstadoAtual = $oFila->dequeue();

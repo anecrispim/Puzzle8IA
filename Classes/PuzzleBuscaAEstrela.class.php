@@ -24,7 +24,7 @@ class PuzzleBuscaAEstrela {
             return $oNovoEstado;
         } elseif ($sDirecao === 'down' && $iLinhaVazia < 2) {
             $oNovoEstado->trocar($iLinhaVazia, $iColunaVazia, $iLinhaVazia + 1, $iColunaVazia);
-            $oNovoEstado->sAcao = 'Mover para Baizo';
+            $oNovoEstado->sAcao = 'Mover para Baixo';
             $oNovoEstado->iCusto++;
             return $oNovoEstado;
         } elseif ($sDirecao === 'left' && $iColunaVazia > 0) {

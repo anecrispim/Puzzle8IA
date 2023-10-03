@@ -3,19 +3,16 @@ include 'funcoes.php';
 
 // Criar a matriz do puzzle
 
-// if (!isset($_POST['matriz'])) {
-//     $aMatriz = criarMatriz();
-// } else {
-//     $aMatriz = json_decode($_POST['matriz']);
-//     if ($_POST['tipo-busca'] == 'bc') {
-//         $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]];l
-//     }
-// }
+if (!isset($_POST['matriz'])) {
+    $aMatriz = criarMatriz();
+} else {
+    $aMatriz = json_decode($_POST['matriz']);
+}
 
-$aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]];
-$aMatriz = [[2, 8, 1], [0, 4, 3], [7, 6, 5]];
-// $aMatriz = [[5, 6, 7], [4, 0, 8], [3, 2, 1]];
-// $aMatriz = [[8, 7, 1], [6, 0, 2], [5, 4, 3]];
+// $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]];
+// $aMatriz = [[4, 7, 8], [5, 0, 2], [1, 6, 3]];
+// $aMatriz = [[0, 5, 3], [1, 7, 8], [2, 4, 6]];
+// $aMatriz = [[2, 5, 4], [8, 7, 3], [1, 0, 6]];
 
 $sTipoBusca = '';
 if (isset($_POST['tipo-busca'])) {

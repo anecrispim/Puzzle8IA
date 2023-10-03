@@ -47,14 +47,6 @@ class PuzzleBuscaHorizontal {
         return null;
     }
 
-    public function __toString() {
-        $output = '';
-        foreach ($this->oPuzzle as $row) {
-            $output .= implode(' ', $row) . "\n";
-        }
-        return $output;
-    }
-
     public function trocar($i1, $j1, $i2, $j2) {
         list($this->oPuzzle[$i1][$j1], $this->oPuzzle[$i2][$j2]) = [$this->oPuzzle[$i2][$j2], $this->oPuzzle[$i1][$j1]];
     }

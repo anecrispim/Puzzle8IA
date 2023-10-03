@@ -29,13 +29,13 @@ function buscaAEstrela($aEstadoInicial) {
 
     $oAbertos->insert($aEstadoInicial, 0);
 
-    $iLimite = 899999;
+    $iLimite = 110000;
     $iCont = 0;
-    while (!$oAbertos->isEmpty() || $iLimite == $iCont) {
+    while (!$oAbertos->isEmpty()) {
         $oEstadoAtual = $oAbertos->extract();
         $oFechados->attach($oEstadoAtual);
 
-        if (estadoEsperado($oEstadoAtual)) {
+        if (estadoEsperado($oEstadoAtual) || $iLimite == $iCont) {
             return [$oEstadoAtual, (microtime(true) - $nTempo), $oAbertos];
         }
 
@@ -50,6 +50,7 @@ function buscaAEstrela($aEstadoInicial) {
                 $oAbertos->insert($oNovoEstado, -$f);
             }
         }
+        $iCont++;
     }
 
     return [null, 0, 0];
