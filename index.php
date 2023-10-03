@@ -9,10 +9,10 @@ if (!isset($_POST['matriz'])) {
     $aMatriz = json_decode($_POST['matriz']);
 }
 
-// $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]];
-// $aMatriz = [[4, 7, 8], [5, 0, 2], [1, 6, 3]];
-// $aMatriz = [[0, 5, 3], [1, 7, 8], [2, 4, 6]];
-// $aMatriz = [[2, 5, 4], [8, 7, 3], [1, 0, 6]];
+// $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]]; // funciona em todos
+// $aMatriz = [[4, 7, 8], [5, 0, 2], [1, 6, 3]]; // apenas a estrela 2
+// $aMatriz = [[0, 5, 3], [1, 7, 8], [2, 4, 6]]; // apenas a estrela 2
+// $aMatriz = [[2, 5, 4], [8, 7, 3], [1, 0, 6]]; // apenas a estrela 1 e 2
 
 $sTipoBusca = '';
 if (isset($_POST['tipo-busca'])) {
