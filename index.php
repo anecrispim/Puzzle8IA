@@ -2,17 +2,25 @@
 include 'funcoes.php';
 
 // Criar a matriz do puzzle
+
 // if (!isset($_POST['matriz'])) {
 //     $aMatriz = criarMatriz();
 // } else {
 //     $aMatriz = json_decode($_POST['matriz']);
 //     if ($_POST['tipo-busca'] == 'bc') {
-//         $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]]; // Exemplo de um estado inicial
+//         $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]];l
 //     }
 // }
 
-$aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]]; // Exemplo de um estado inicial
+$aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]];
+$aMatriz = [[2, 8, 1], [0, 4, 3], [7, 6, 5]];
+// $aMatriz = [[5, 6, 7], [4, 0, 8], [3, 2, 1]];
+// $aMatriz = [[8, 7, 1], [6, 0, 2], [5, 4, 3]];
 
+$sTipoBusca = '';
+if (isset($_POST['tipo-busca'])) {
+    $sTipoBusca = $_POST['tipo-busca'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +39,7 @@ $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]]; // Exemplo de um estado inicial
             <h2>Puzzle8</h2>
             <table class="table table-bordered table-center" style="width:50%;">
                 <?php
-                    imprimirMatrizTable($aMatriz);
+                    imprimirMatrizTablePrincipal($aMatriz);
                 ?>
             </table>
         </div>
@@ -40,21 +48,28 @@ $aMatriz = [[2, 3, 6], [1, 5, 0], [4, 7, 8]]; // Exemplo de um estado inicial
             <div class="mb-3">
                 <label for="tipo-busca" class="form-label"><b>Resolução por:</b></label>
                 <select class="form-select" name="tipo-busca">
-                    <option value="bc" selected>Busca Horizontal</option>
-                    <option value="ba1">Busca A* (somente com f(x) = g(x))</option>
-                    <option value="ba2">Busca A* (com f(x) = g(x) + h(x))</option>
+                    <option value="bc" <?= $sTipoBusca == 'bc' ? 'selected' : '' ?>>Busca Horizontal</option>
+                    <option value="ba1" <?= $sTipoBusca == 'ba1' ? 'selected' : '' ?>>Busca A* (somente com f(x) = g(x))</option>
+                    <option value="ba2" <?= $sTipoBusca == 'ba2' ? 'selected' : '' ?>>Busca A* (com f(x) = g(x) + h(x))</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Resolver</button>
         </form>
         <?php
-            if (isset($_POST['tipo-busca'])) {
-                $sTipoBusca = $_POST['tipo-busca'];
+            if (!empty($sTipoBusca)) {
 
                 switch ($sTipoBusca) {
                     case 'bc':
                         include 'buscaHorizontal.php';
                         implementaBuscaHorizontal($aMatriz);
+                        break;
+                    case 'ba1':
+                        include 'buscaAEstrela1.php';
+                        implementaBuscaAEstrela1($aMatriz);
+                        break;
+                    case 'ba2':
+                        include 'buscaAEstrela2.php';
+                        implementaBuscaAEstrela2($aMatriz);
                         break;
                 }
             }

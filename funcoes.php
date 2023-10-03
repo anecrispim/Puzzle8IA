@@ -26,7 +26,7 @@ function criarMatriz() {
 }
 
 // Função para imprimir a matriz
-function imprimirMatrizTable($aMatriz) {
+function imprimirMatrizTablePrincipal($aMatriz) {
     foreach ($aMatriz as $iLinha => $aLinha) {
         echo sprintf('<tr style="line-height: 100px;" id="linha-%s">', $iLinha);
         foreach ($aLinha as $iColuna => $iValor) {
@@ -34,6 +34,18 @@ function imprimirMatrizTable($aMatriz) {
         }
         echo '</tr>';
     }
+}
+
+function imprimirMatrizTableCaminho($aMatriz) {
+    echo '<table class="table table-bordered table-center text-center" style="width:25%;">';
+    foreach ($aMatriz as $aLinha) {
+        echo '<tr>';
+        foreach ($aLinha as $iValor) {
+            echo sprintf('<td>%s</td>', $iValor);
+        }
+        echo '</tr>';
+    }
+    echo '</table><br>';
 }
 
 ?>

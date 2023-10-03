@@ -13,11 +13,13 @@ function estadoEsperado($oEstado) {
 
     $oFila->enqueue($oEstadoInicial);
 
+    $iLimite = 899999;
+    $iCont = 0;
     while (!$oFila->isEmpty()) {
         $oEstadoAtual = $oFila->dequeue();
         $oVisitado->attach($oEstadoAtual);
 
-        if (estadoEsperado($oEstadoAtual)) {
+        if (estadoEsperado($oEstadoAtual) || $iLimite == $iCont) {
             return [$oEstadoAtual, microtime(true) - $oTempoInicial, $oVisitado];
         }
 
@@ -29,53 +31,29 @@ function estadoEsperado($oEstado) {
                 $oFila->enqueue($oNovoEstado);
             }
         }
+        $iCont++;
     }
 
     return [null, 0, 0];
 }
 
 function caminhoSolucao($oEstadoFinal) {
-    $aCaminhoAcao = [];
     $aCaminhoPuzzle = [];
     $oEstadoAtual = $oEstadoFinal;
 
     while ($oEstadoAtual) {
         if ($oEstadoAtual->sAcao) {
-            array_push($aCaminhoAcao, $oEstadoAtual->sAcao);
             array_push($aCaminhoPuzzle, $oEstadoAtual);
         }
         $oEstadoAtual = $oEstadoAtual->oPai;
     }
 
-    $aCaminhoAcao = array_reverse($aCaminhoAcao);
     $aCaminhoPuzzle = array_reverse($aCaminhoPuzzle);
 
-    foreach ($aCaminhoAcao as $sPasso) {
-        echo $sPasso . "<br>";
+    foreach ($aCaminhoPuzzle as $oPuzzle) {
+        echo $oPuzzle->sAcao . "<br>";
+        imprimirMatrizTableCaminho($oPuzzle->oPuzzle);
     }
-    caminhoJs($aCaminhoPuzzle);
-}
-
-function caminhoJs($aCaminhoPuzzle) {
-    printf(
-        '<script>
-            debugger;
-            var caminho = %s;
-            for (var x = 0; x < caminho.length; x++) {
-                var array = caminho[x].oPuzzle;
-                setTimeout(() => {
-                    for (var i = 0; i < array.length; i++) { 
-                        coluna = array[i];
-                        for (var j = 0; j < coluna.length; j++) { 
-                            console.log("foi");
-                            $(`.coluna-${j}`, `#linha-${i}`).html(coluna[j]);
-                        }
-                    }
-                }, "1000");
-            }
-        </script>'
-        , json_encode($aCaminhoPuzzle)
-    );
 }
 
 function implementaBuscaHorizontal($aPuzzleInicial) {
