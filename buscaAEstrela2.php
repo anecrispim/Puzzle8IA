@@ -6,6 +6,7 @@ function estadoEsperado($oEstado) {
     return $oEstado->igual(new PuzzleBuscaAEstrela($aEstadoFinal));
 }
 
+// n peças fora do lugar e distancia de mahattan
 function h($oEstado) {
     $aEstadoFinal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
     $iDistanciaManhattan = 0;
